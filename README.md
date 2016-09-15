@@ -17,7 +17,7 @@ deployer-cfg list
 ```
 ## Update
 ```
-php composer.phar global update
+php composer.phar global update torg/deployer-cfg
 ```
 ## Usage
 #### List of all commands
