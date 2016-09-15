@@ -1,5 +1,5 @@
 {
-    "name": "erliz/deployer-cfg",
+    "name": "torg/deployer-cfg",
     "description": "Console script for generation config files based on recursive configuration",
     "type": "lib",
     "autoload": {
