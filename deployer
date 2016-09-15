@@ -1,9 +1,42 @@
 #!/usr/bin/env php
 <?php
+
+if (version_compare('5.6.0', PHP_VERSION, '>')) {
+    fwrite(
+        STDERR,
+        'This version of PHPUnit requires PHP 5.6; using the latest version of PHP is highly recommended.' . PHP_EOL
+    );
+
+    die(1);
+}
+
+if (!ini_get('date.timezone')) {
+    ini_set('date.timezone', 'UTC');
+}
+
+foreach (array(__DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
+    if (file_exists($file)) {
+        define('DEPLOYER_COMPOSER_INSTALL', $file);
+
+        break;
+    }
+}
+
+unset($file);
+
+if (!defined('DEPLOYER_COMPOSER_INSTALL')) {
+    fwrite(STDERR,
+        'You need to set up the project dependencies using the following commands:' . PHP_EOL .
+        'wget http://getcomposer.org/composer.phar' . PHP_EOL .
+        'php composer.phar install' . PHP_EOL
+    );
+
+    die(1);
+}
+
+require DEPLOYER_COMPOSER_INSTALL;
+
 use Erliz\DeployerCfg\Command;
-
-require __DIR__.'/vendor/autoload.php';
-
 use Symfony\Component\Console\Application;
 
 $application = new Application();

@@ -3,7 +3,8 @@ Deployer Config
 
 ## Install
 ```
-composer require-dev git@gitlab.corp.mail.ru:torg/deployer-cfg.git
+php composer.phar -g config repositories.deploy-cfg vcs git@gitlab.corp.mail.ru:torg/deployer-cfg.git
+composer.phar global require torg/deployer-cfg
 ```
 ## Usage
 #### List of all commands
