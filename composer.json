@@ -23,7 +23,7 @@
         }
     ],
     "bin": [
-        "deployer"
+        "deployer-cfg"
     ],
     "minimum-stability": "stable"
 }
