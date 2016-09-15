@@ -24,5 +24,6 @@
     ],
     "bin": [
         "deployer"
-    ]
+    ],
+    "minimum-stability": "stable"
 }
