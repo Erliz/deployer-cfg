@@ -1,7 +1,7 @@
 {
     "name": "torg/deployer-cfg",
     "description": "Console script for generation config files based on recursive configuration",
-    "type": "lib",
+    "type": "library",
     "autoload": {
         "psr-0": { "": "src/" }
     },
