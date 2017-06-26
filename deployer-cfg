@@ -39,7 +39,7 @@ require DEPLOYER_COMPOSER_INSTALL;
 use Erliz\DeployerCfg\Command;
 use Symfony\Component\Console\Application;
 
-$application = new Application('Deploy configuration tool', '1.1.3');
+$application = new Application('Deploy configuration tool', '1.1.4');
 
 $application->add(new Command\RenderCommand());
 $application->add(new Command\ListConfigsCommand());

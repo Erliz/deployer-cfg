@@ -55,7 +55,18 @@ class RenderCommand extends Command
                 InputOption::VALUE_REQUIRED,
                 'The template which should be fill with params from config'
             )
-            ->addOption('output', 'o', InputOption::VALUE_OPTIONAL, 'The output file path');
+            ->addOption(
+                'output',
+                'o',
+                InputOption::VALUE_OPTIONAL,
+                'The output file path'
+            )
+            ->addOption(
+                'options',
+                'O',
+                InputOption::VALUE_REQUIRED,
+                'JSON string with addition options that will be placed in "_.options" array'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -141,8 +152,18 @@ class RenderCommand extends Command
         $config = $configService->getMergedConfig($configs, $currentConfigName);
 
         // base values
-        $config['_']['options']['branch'] = '';
-        $config['_']['options']['releaseName'] = '';
+        $rootConfigOptions = [
+            'branch' => '',
+            'releaseName' => '',
+        ];
+
+        if ($rootOptions = $input->getOption('options')) {
+            foreach (json_decode($rootOptions) as $rootOptionKey => $rootOptionValue) {
+                $rootConfigOptions[$rootOptionKey] = $rootOptionValue;
+            }
+        }
+
+        $config['_']['options'] = $rootConfigOptions;
 
         $twig = $configService->getTwig();
         $config = $configService->generateConfig($config, $twig);
