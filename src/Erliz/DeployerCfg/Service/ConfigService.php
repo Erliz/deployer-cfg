@@ -178,6 +178,10 @@ class ConfigService
         $loader = new Twig_Loader_String();
         $twig = new Twig_Environment($loader, ['debug' => true, 'strict_variables' => true, 'autoescape' => false]);
 
+        $twig->addFilter(new Twig_SimpleFilter('emit_yaml', function ($value) {
+            return yaml_emit($value);
+        }));
+
         return $twig;
     }
 
