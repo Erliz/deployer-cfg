@@ -15,6 +15,7 @@ use Symfony\Component\Yaml\Yaml;
 use Twig_Environment;
 use Twig_Lexer;
 use Twig_Loader_String;
+use Twig_SimpleFilter;
 
 
 /**
