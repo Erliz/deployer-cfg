@@ -162,7 +162,9 @@ class ConfigService
             if (is_array($val)) {
                 $config[$key] = $this->recursiveRender($val, $twig, $parentConfig ?: $config);
             } else {
-                if (is_scalar($val)) {
+                if (is_bool($val)) {
+                    $config[$key] = $val;
+                } else if (is_scalar($val)) {
                     $config[$key] = $twig->render($val, $parentConfig ?: $config);
                 }
             }
